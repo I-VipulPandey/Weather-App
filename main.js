@@ -35,14 +35,14 @@ const uviConcernLevel = document.querySelector('.uvi-level');
 const uviConcernLevel2 = document.querySelector('.uvi-level2');
 
 // Hours report
-const hoursIcon = document.querySelectorAll('.hourly-icon');
-const hoursTemp = document.querySelectorAll('.hours-temp');
+const completeDay = document.querySelector('.today-at')
 
 // Days temperature
 const daysIcon = document.querySelectorAll('.days-icon');
 const nextDay = document.querySelectorAll('.prediction-day');
 const predictionDesc = document.querySelectorAll('.prediction-desc');
 const daysTemp = document.querySelectorAll('.days-temp');
+const futurePrediction = document.querySelector('.weather-prediction')
 
 // Time and dates 
 const currentTime = document.querySelector('.time');
@@ -165,36 +165,53 @@ function checkUviValue(level, color) {
 // // || Hourse 
 function hoursWeatherReport() {
 
-    hoursTemp.forEach((t, i) => {
-        t.innerHTML = responseData.forecast.forecastday[0].hour[i].temp_c;
+
+    let html='';
+    responseData.forecast.forecastday[0].hour.forEach(function (hour, index) {
+
+    let day = hour.condition.icon.includes('day')
+
+        let time = hour.time.split(' ')[1]
+
+        html += `<div class="hours-box">
+          <p class="hours">${time} ${day?'PM' : 'AM'}</p>
+           <img class="hourly-icon" src=${hour.condition.icon} alt="icon">
+          <p class="hours-temp">${hour.temp_c} °c</p>
+          </div>`
+        
     })
 
-    hoursIcon.forEach((t, i) => {
-        t.src = responseData.forecast.forecastday[0].hour[i].condition.icon;
-    })
+    completeDay.innerHTML = html;
 }
 
 // // Days
 function forecastdayReport() {
 
-    daysIcon.forEach((icon, index) => {
-        icon.src = responseData.forecast.forecastday[index].day.condition.icon
-    })
 
-    daysTemp.forEach((temp, index) => {
-        temp.innerHTML = Math.round(responseData.forecast.forecastday[index].day.maxtemp_c) + '°c' + `<span> / </span>` + Math.round(responseData.forecast.forecastday[index].day.mintemp_c) + '°c';
-    })
+    let markup='';
+    responseData.forecast.forecastday.forEach((data, index) => {
 
-    predictionDesc.forEach((d, index) => {
-        d.innerHTML = responseData.forecast.forecastday[index].day.condition.text;
-    })
-
-    nextDay.forEach((day, index) => {
         let weekdate = new Date(responseData.forecast.forecastday[index].date).getDate();
         let weekday = weekDays[new Date(responseData.forecast.forecastday[index].date).getDay()];
 
-        day.innerHTML = `${weekday} ${weekdate}`
+
+        markup += `<div class="days-box">
+        <div>
+            <img class="days-icon" src=${data.day.condition.icon} alt="">
+            <div class="days">
+                 <div class="prediction-day">${weekday} ${weekdate}</div>
+                <div class="prediction-desc">${data.day.condition.text}</div>
+
+            </div>
+        </div>
+
+        <div class="days-temp">${Math.round(data.day.maxtemp_c) + '°c'} <span>/</span> ${Math.round(data.day.mintemp_c) + '°c'} </div>
+    </div>
+    `
     })
+
+    futurePrediction.innerHTML = markup;
+
 }
 
 function time() {
