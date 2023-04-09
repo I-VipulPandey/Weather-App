@@ -70,8 +70,43 @@ async function weatherReport(searchCity) {
 
 
 // || By default city
-weatherReport('New Delhi');
 
+
+function getUserCurrentLocation() {
+    let userCoords = {};
+
+    navigator.geolocation.getCurrentPosition(function (coord) {
+        userCoords.latitude = coord.coords.latitude
+        userCoords.longitude = coord.coords.longitude
+
+    })
+
+    return userCoords
+
+}
+
+async function getLocation() {
+
+
+    const coords = getUserCurrentLocation()
+
+    const location = await fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${coords.latitude}&longitude=${coords.longitude}&localityLanguage=en`)
+
+    const userLocation = await location.json()
+
+    if (userLocation) {
+        weatherReport(userLocation.city);
+
+    }
+    else {
+        weatherReport("Delhi");
+
+    }
+
+
+}
+
+getLocation();
 
 function todayWeatherReport() {
     city.innerHTML = responseData.location.name;
@@ -145,7 +180,7 @@ function forecastdayReport() {
     daysIcon.forEach((icon, index) => {
         icon.src = responseData.forecast.forecastday[index].day.condition.icon
     })
-    
+
     daysTemp.forEach((temp, index) => {
         temp.innerHTML = Math.round(responseData.forecast.forecastday[index].day.maxtemp_c) + '°c' + `<span> / </span>` + Math.round(responseData.forecast.forecastday[index].day.mintemp_c) + '°c';
     })
@@ -155,7 +190,7 @@ function forecastdayReport() {
     })
 
     nextDay.forEach((day, index) => {
-        let weekdate = new Date(responseData.forecast.forecastday[index ].date).getDate();
+        let weekdate = new Date(responseData.forecast.forecastday[index].date).getDate();
         let weekday = weekDays[new Date(responseData.forecast.forecastday[index].date).getDay()];
 
         day.innerHTML = `${weekday} ${weekdate}`
