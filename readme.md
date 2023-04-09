@@ -37,11 +37,11 @@ Alternatively, you can download the project files as a ZIP file from the GitHub 
 Screenshots
 
 - Desktop View
-    <img src="readme/desk.png" alt="desktopImage">
+    <img src="images/desk.png" alt="desktopImage">
 
 
 - Mobile View
-    <img src="readme/mob.png" alt="mobileImage">
+    <img src="images/mob.png" alt="mobileImage">
 
 
 Contributing
