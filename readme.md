@@ -37,8 +37,7 @@ Alternatively, you can download the project files as a ZIP file from the GitHub 
 Screenshots
 
 - Desktop View
-    <img src="images/desk.png" alt="desktopImage">
-
+![desktopImage](https://github.com/i-vipulpandey/Weather-App/blob/master/images/desk.png?raw=true)
 
 - Mobile View
     <img src="images/mob.png" alt="mobileImage">
