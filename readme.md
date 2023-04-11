@@ -4,21 +4,21 @@ This is a responsive weather website that displays current weather conditions an
 
 The website is live and can be accessed at: https://i-vipulpandey.github.io/Weather-App/
 
-Features
+## Features
 
 - Displays current temperature, humidity, wind speed, and UV index
 - Displays 3-day weather forecast including temperature, humidity, wind speed, and UV index
 - Supports searching for weather information for any location worldwide
 - Automatically detects user's location and displays weather information for that location
 
-Technologies Used
+## Technologies Used
 
 - HTML5
 - CSS3 
 - JavaScript
 - OpenWeather API
 
-Getting Started
+## Getting Started
 
 To get started with the Weather App, follow these steps:
 
@@ -34,7 +34,7 @@ Alternatively, you can download the project files as a ZIP file from the GitHub 
 
 4- Search for the location you want to see weather information for in the search bar, or allow the website to detect your current location.
 
-Screenshots
+## Screenshots
 
 - Desktop View
 
@@ -51,7 +51,7 @@ Screenshots
     
 
 
-Contributing
+## Contributing
 
 If you find any bugs or want to contribute to this project, feel free to create an issue or a pull request.
 
