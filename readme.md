@@ -1,6 +1,6 @@
 # Weather App
 
-This is a responsive weather website that displays current weather conditions and 3-day weather forecast for a given location.
+This is a responsive weather website that displays current weather conditions and 3-day weather forecast for a given location(if location not allowed than delhi will be used as default location).
 
 The website is live and can be accessed at: https://i-vipulpandey.github.io/Weather-App/
 
